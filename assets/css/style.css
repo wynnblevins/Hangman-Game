@@ -1,0 +1,17 @@
+.interfaceBox {
+    border: 3px solid grey;
+    padding: 20px;
+    margin: 5px;
+}
+
+#remainingCount {
+
+}
+
+#guessedCharsBox {
+
+}
+
+#winsCount {
+
+}
