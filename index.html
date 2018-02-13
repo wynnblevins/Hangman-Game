@@ -9,31 +9,32 @@
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/scripts/random_number_generator.js"></script>
+    <script type="text/javascript" src="assets/scripts/media_library.js"></script>
+    <script type="text/javascript" src="assets/scripts/media_player.js"></script>
+    <script type="text/javascript" src="assets/scripts/hangman_game.js"></script>
+    <script type="text/javascript" src="assets/scripts/events.js"></script> 
 </head>
 <body>
     <div class="interfaceBox">
-        <p>Press any key to get started</p>
         <div class="interfaceBox">
             <p>Wins:</p>
             <p id="winsCount"></p>
         </div>
         <div class="interfaceBox">
-            <p>correct guesses here.</p>
+            <p id="currentPuzzleBox"></p>
         </div>
         <div class="interfaceBox">
             <p>Number of guesses remaining:</p>
             <p id="remainingCount"></p>
         </div>
         <div id="guessedCharsBox" class="interfaceBox">
-            <p>Put guessed letters here...</p>
+            <p id="guessedLetters">Put guessed letters here...</p>
         </div>
+        <input type="text" name="guess" id="guessInput" onkeyup="keyWasPressed()">
     </div>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="scripts/random_number_generator.js"></script>
-    <script type="text/javascript" src="scripts/media_library.js"></script>
-    <script type="text/javascript" src="scripts/media_player.js"></script>
-    <script type="text/javascript" src="scripts/hangman_game.js"></script> 
 </body>
 </html>
