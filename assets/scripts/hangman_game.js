@@ -37,8 +37,14 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
             // use random number to pick a file
             target = mediaLibrary.retrieveFilePath(fileNdx);
 
-            // figure out how many guesses the user will get
-            remainingGuesses = target.targetString.length + guessThreshold;
+            // create game board
+            for (var i = 0; i < target.targetString.length; i++) {
+                if (target.targetString[i] !== ' ') {
+                    // create a span for each character in puzzle and fill with an underscore
+                } else { // character is a space
+                    // put a span with an empty space on puzzle board
+                }
+            }
         },
 
         keystrokeDetected: function () {

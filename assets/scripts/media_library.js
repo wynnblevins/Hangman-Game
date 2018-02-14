@@ -3,15 +3,15 @@ var mediaLibrary = (function () {
 
     var files = [
         {targetString: 'THE BEATLES', filename: 'beatles.mp3',  
-            path: 'assets/audio/beatles.mp3', puzzleString: '___ _______'},
+            path: 'assets/audio/beatles.mp3'},
         {targetString: 'QUEEN', filename: 'queen.mp3', 
-            path: 'assets/audio/queen.mp3', puzzleString: '_____'},
-        {targetString: 'PINK_FLOYD', filename: 'pink_floyd.mp3', 
-            path: 'assets/audio/pink_floyd.mp3', puzzleString: '____ _____'},
-        {targetString: 'bee gees', filename: 'bee_gees.mp3', 
-            path: 'assets/audio/pink_floyd.mp3', puzzleString: '___ ____'},
-        {targetString: 'led zeppelin', filename: 'zeppelin.mp3', 
-            path: 'assets/audio/zeppelin.mp3', puzzleString: '___ ________'},
+            path: 'assets/audio/queen.mp3'},
+        {targetString: 'PINK FLOYD', filename: 'pink_floyd.mp3', 
+            path: 'assets/audio/pink_floyd.mp3'},
+        {targetString: 'BEE GEES', filename: 'bee_gees.mp3', 
+            path: 'assets/audio/pink_floyd.mp3'},
+        {targetString: 'LED ZEPPELIN', filename: 'zeppelin.mp3', 
+            path: 'assets/audio/zeppelin.mp3'},
     ];
 
     return {        
