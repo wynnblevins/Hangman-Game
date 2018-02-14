@@ -2,12 +2,13 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
     'use strict';
     
     var target;
-    var guessThreshold = 5; // number of incorrect guesses allowed
+    var guessThreshold = 6; // number of incorrect guesses allowed
     var remainingGuesses = guessThreshold;
-
+    var guesses = 0;
+    
     function getMatchIndices(targetWord, guessLetter) {
         var ndxs = [];
-        
+        var targetWord = targetWord.toUpperCase();
         for (var i = 0; i < targetWord.length; i++) {
             if (targetWord[i] === guessLetter) {
                 ndxs.push(i);
@@ -41,7 +42,9 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
         },
 
         keystrokeDetected: function () {
-            remainingGuesses -= 1;
+            guesses += 1;
+            
+            $('#scaffold').attr('src', 'assets/images/ScaffoldStrike' + guesses + '.png');
         },
 
         playGame: function () {
@@ -51,7 +54,7 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
         guessIsMatch: function (guess) {
             var ndxs = getMatchIndices(target.targetString, guess);
             if (ndxs.length !== 0) {
-                alert("match found!");
+                console.log(ndxs);
             }
         }
     }; 

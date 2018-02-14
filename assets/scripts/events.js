@@ -26,8 +26,5 @@ function keyWasPressed () {
     var guessedLetters = document.getElementById('guessedLetters');
     guessedLetters.innerHTML = currentGameValue;
     
-    var remainingCount = document.getElementById('remainingCount');
-    remainingCount.innerHTML = hangmanGame.getRemainingGuesses();
-
     hangmanGame.keystrokeDetected();
 }    

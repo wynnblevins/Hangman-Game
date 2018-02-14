@@ -18,23 +18,24 @@
     <script type="text/javascript" src="assets/scripts/hangman_game.js"></script>
     <script type="text/javascript" src="assets/scripts/events.js"></script> 
 </head>
-<body>
-    <div class="interfaceBox">
+<body class="container-fluid">
+    <div class="col-md-6">
         <div class="interfaceBox">
-            <p>Wins:</p>
-            <p id="winsCount"></p>
+            <div class="interfaceBox">
+                <p>Wins:</p>
+                <p id="winsCount"></p>
+            </div>
+            <div class="interfaceBox">
+                <p id="currentPuzzleBox"></p>
+            </div>
+            <div id="guessedCharsBox" class="interfaceBox">
+                <p id="guessedLetters">Put guessed letters here...</p>
+            </div>
+            <input type="text" name="guess" id="guessInput" onkeyup="keyWasPressed()">
         </div>
-        <div class="interfaceBox">
-            <p id="currentPuzzleBox"></p>
-        </div>
-        <div class="interfaceBox">
-            <p>Number of guesses remaining:</p>
-            <p id="remainingCount"></p>
-        </div>
-        <div id="guessedCharsBox" class="interfaceBox">
-            <p id="guessedLetters">Put guessed letters here...</p>
-        </div>
-        <input type="text" name="guess" id="guessInput" onkeyup="keyWasPressed()">
+    </div>
+    <div class="col-md-6">
+        <img id="scaffold" src="assets/images/ScaffoldStrike0.png" alt="Scaffold">
     </div>
 </body>
 </html>
