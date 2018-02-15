@@ -31,7 +31,13 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
                 for (var i = 0; i < ndxs.length; i++) {
                     // set value of span at index in target.targetString to uppercaseChar
                     // NOTE TO SELF: THIS IS THE LINE NOT WORKING AS EXPECTED
-                    $('div#currentPuzzleBox > span:eq(' + i + ')').innerHTML = uppercaseChar; 
+                    var spans = $('div#currentPuzzleBox > span');
+                    
+                    for (var j = 0; j < target.targetString.length; j++) {
+                        if (target.targetString[j] === uppercaseChar) {
+                            spans[j].innerHTML = uppercaseChar;
+                        }
+                    }
                 }    
             } else {
                 ++strikes;
