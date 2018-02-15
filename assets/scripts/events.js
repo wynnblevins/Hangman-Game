@@ -25,6 +25,4 @@ function keyWasPressed () {
     
     var guessedLetters = document.getElementById('guessedLetters');
     guessedLetters.innerHTML = currentGameValue;
-    
-    hangmanGame.keystrokeDetected();
-}    
+} 

@@ -8,15 +8,7 @@
 
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="assets/scripts/random_number_generator.js"></script>
-    <script type="text/javascript" src="assets/scripts/media_library.js"></script>
-    <script type="text/javascript" src="assets/scripts/media_player.js"></script>
-    <script type="text/javascript" src="assets/scripts/hangman_game.js"></script>
-    <script type="text/javascript" src="assets/scripts/events.js"></script> 
+    <link rel="stylesheet" href="assets/css/style.css"> 
 </head>
 <body class="container-fluid">
     <div class="col-md-6">
@@ -26,16 +18,25 @@
                 <p id="winsCount"></p>
             </div>
             <div class="interfaceBox">
-                <p id="currentPuzzleBox"></p>
+                <div id="currentPuzzleBox">
+                    <!-- puzzle gets builts here -->
+                </div>
             </div>
             <div id="guessedCharsBox" class="interfaceBox">
                 <p id="guessedLetters">Put guessed letters here...</p>
             </div>
-            <input type="text" name="guess" id="guessInput" onkeyup="keyWasPressed()">
         </div>
     </div>
     <div class="col-md-6">
         <img id="scaffold" src="assets/images/ScaffoldStrike0.png" alt="Scaffold">
     </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/scripts/random_number_generator.js"></script>
+    <script type="text/javascript" src="assets/scripts/media_library.js"></script>
+    <script type="text/javascript" src="assets/scripts/media_player.js"></script>
+    <script type="text/javascript" src="assets/scripts/hangman_game.js"></script>
+    <script type="text/javascript" src="assets/scripts/events.js"></script>
 </body>
 </html>

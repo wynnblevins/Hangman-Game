@@ -3,7 +3,7 @@ var rand_generator = (function () {
 
     return {
         generate: function (maxNumber) {
-            return Math.floor((Math.random() * maxNumber) + 1);
+            return Math.floor((Math.random() * maxNumber));
         }
     };
 })();
