@@ -6,6 +6,18 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
     var remainingGuesses = guessThreshold;
     var guesses = 0;
     
+    function allLettersRevealed() {
+        var spans = $('div#currentPuzzleBox > span');
+
+        for (var span in spans) {
+            if (span.innerHTML === '_') {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     function getMatchIndices(targetWord, guessLetter) {
         var ndxs = [];
         var targetWord = targetWord.toUpperCase();
@@ -17,7 +29,7 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
 
         return ndxs;
     }
-
+)
     return {
         onKeyPress: function (event) {
             var char = String.fromCharCode(event.which); 
@@ -44,6 +56,18 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
                 var $scaffold = $('img#scaffold');
                 $scaffold.attr('src', 'assets/images/ScaffoldStrike' + strikes + '.png');
             }            
+
+            if (strikes === guessThreshold) {
+                // if user has run out of guesses
+                
+                // SHOW LOSER SCREEN
+            } else if (allLettersRevealed()) {
+                // or beaten the puzzle
+
+                // ADD ONE TO WINS
+
+                // SHOW WINNER SCREEN        
+            }
         },
 
         getRemainingGuesses: function () {
