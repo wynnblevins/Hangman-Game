@@ -1,4 +1,4 @@
-var hangmanGame = (function (rand_generator, mediaLibrary) {
+var hangmanGame = (function (rand_generator, mediaLibrary, mediaPlayer) {
     'use strict';
     
     var target;
@@ -70,6 +70,8 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
                 // TODO: Update wins count on interface
                 var wins = $('#winsCount');
                 wins[0].innerHTML = winsCount;
+                
+                mediaPlayer.playSong(target.path);
             }
         },
 
@@ -128,7 +130,7 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
             $scaffold.attr('src', 'assets/images/ScaffoldStrike' + strikes + '.png');
         }
     }; 
-})(rand_generator, mediaLibrary);
+})(rand_generator, mediaLibrary, mediaPlayer);
 
 $('body').keypress(function (event) {
     hangmanGame.onKeyPress(event); 
