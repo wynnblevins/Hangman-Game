@@ -9,7 +9,7 @@ var mediaLibrary = (function () {
         {targetString: 'PINK FLOYD', filename: 'pink_floyd.mp3', 
             path: 'assets/audio/pink_floyd.mp3', imgPath: 'assets/images/dark_side.png'},
         {targetString: 'BEE GEES', filename: 'bee_gees.mp3', 
-            path: 'assets/audio/bee_gees.mp3', imgPath: 'assets/images/beegees.jpg'},
+            path: 'assets/audio/bee_gees.mp3', imgPath: 'assets/images/beegees.png'},
         {targetString: 'LED ZEPPELIN', filename: 'zeppelin.mp3', 
             path: 'assets/audio/zeppelin.mp3', imgPath: 'assets/images/ledzeppelin3.png'},
     ];

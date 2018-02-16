@@ -139,7 +139,7 @@ var hangmanGame = (function (rand_generator, mediaLibrary, mediaPlayer) {
         },
 
         resetAlbumCover: function () {
-            $('#album-cover').removeAttr('src');
+            $('#album-cover').attr('src', 'assets/images/classic-rock-hangman.png');
         },
 
         setAlbumCover: function () {
