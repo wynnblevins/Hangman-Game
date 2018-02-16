@@ -5,7 +5,7 @@ var mediaLibrary = (function () {
         {targetString: 'THE BEATLES', filename: 'beatles.mp3',  
             path: 'assets/audio/beatles.mp3', imgPath: 'assets/images/revolver.png'},
         {targetString: 'QUEEN', filename: 'queen.mp3', 
-            path: 'assets/audio/queen.mp3', imgPath: 'assets/images/'},
+            path: 'assets/audio/queen.mp3', imgPath: 'assets/images/night_at_the_opera.png'},
         {targetString: 'PINK FLOYD', filename: 'pink_floyd.mp3', 
             path: 'assets/audio/pink_floyd.mp3', imgPath: 'assets/images/dark_side.png'},
         {targetString: 'BEE GEES', filename: 'bee_gees.mp3', 

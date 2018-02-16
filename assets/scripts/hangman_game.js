@@ -72,7 +72,7 @@ var hangmanGame = (function (rand_generator, mediaLibrary, mediaPlayer) {
                 wins[0].innerHTML = winsCount;
                 
                 mediaPlayer.playSong(target.path);
-                $('album-cover').attr('src', target.imgPath);
+                this.setAlbumCover();
             }
         },
 
@@ -136,6 +136,14 @@ var hangmanGame = (function (rand_generator, mediaLibrary, mediaPlayer) {
 
         resetGuessedLetters: function () {
             guessedLetters = [];
+        },
+
+        resetAlbumCover: function () {
+            $('#album-cover').removeAttr('src');
+        },
+
+        setAlbumCover: function () {
+            $('#album-cover').attr('src', target.imgPath);
         }
     }; 
 })(rand_generator, mediaLibrary, mediaPlayer);
@@ -146,11 +154,13 @@ $('body').keypress(function (event) {
 
 $("#resetBtn").click(function() {
     hangmanGame.resetGame();
+    hangmanGame.resetAlbumCover();
     hangmanGame.resetWinsCount();
 });
 
 $('#nextBtn').click(function () {
     hangmanGame.resetGame();
+    hangmanGame.resetAlbumCover();
     hangmanGame.initGame();    
 });
 
