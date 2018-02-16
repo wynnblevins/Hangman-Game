@@ -4,7 +4,6 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
     var target;
     var guessThreshold = 7; // number of incorrect guesses allowed
     var guessedLetters = [];
-    var remainingGuesses = guessThreshold;
     var guesses = 0;
     var winsCount = 0;
     var strikes = 0;
@@ -34,10 +33,8 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
 
     return {
         onKeyPress: function (event) {
-            var char = String.fromCharCode(event.which); 
-            var uppercaseChar = char.toUpperCase();
+            var uppercaseChar = String.fromCharCode(event.which).toUpperCase();
             var ndxs = getMatchIndices(target.targetString, uppercaseChar);
-            var $div = $('div#currentPuzzleBox');
             
             // if we have a match
             if (ndxs.length) {
@@ -57,43 +54,23 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
                 var $scaffold = $('img#scaffold');
                 $scaffold.attr('src', 'assets/images/ScaffoldStrike' + strikes + '.png');
         
-                if (strikes === 0) {
-                    $('#guessedLetters').text(char);
-                }
-                else {
-                    $('#guessedLetters').text(', ' + char);
-                }         
+                guessedLetters.push(uppercaseChar);
+                console.log(guessedLetters.toString());
+                $('#guessedLetters').text(guessedLetters.toString());         
             }            
 
-            // QUESTION: HOW DO I TIME THIS TO RUN AFTER THE LAST IMAGE HAS LOADED?
             // check if game is lost/won
             if (strikes >= guessThreshold) {
-                // user has run out of guesses
-
-                // TODO: SHOW LOSER MESSAGE AFTER THE LAST IMAGE HAS LOADED
-                alert('you suck!');
-
-                this.resetGame();
+                alert('You LOSE!');
+                this.initGame();
             } else if (allLettersRevealed()) {
                 // user has beaten the puzzle
                 ++winsCount;
-
-                alert('u win!');
                 
                 // TODO: Update wins count on interface
                 var wins = $('#winsCount');
                 wins[0].innerHTML = winsCount;
-                
-                this.resetGame();
             }
-        },
-
-        getRemainingGuesses: function () {
-            return remainingGuesses;
-        },
-        
-        setRemainingGuesses: function (guesses) {
-            remainingGuesses = guesses;
         },
 
         initGame: function () {
@@ -105,6 +82,14 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
 
             // use random number to pick a file
             target = mediaLibrary.retrieveFilePath(fileNdx);
+
+            strikes = 0;
+
+            // make sure the board is clear
+            $('#currentPuzzleBox').empty();
+            $('#guessedLetters').empty();
+            var $scaffold = $('img#scaffold');
+            $scaffold.attr('src', 'assets/images/ScaffoldStrike' + strikes + '.png');
 
             // create game board
             for (var i = 0; i < target.targetString.length; i++) {
@@ -118,10 +103,6 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
                 }
             }
         },
-        
-        playGame: function () {
-            this.initGame();
-        },
 
         guessIsMatch: function (guess) {
             var ndxs = getMatchIndices(target.targetString, guess);
@@ -133,16 +114,18 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
             }
         },
 
+        resetWinsCount: function () {
+            winsCount = 0;
+            var winsCountP = $('#winsCount');
+            winsCountP[0].innerHTML = winsCount;
+        },
+
         resetGame: function () {
-            var strikes = 0;
-            $('#currentPuzzleBox').empty();
+            strikes = 0;
             this.initGame();
 
             var $scaffold = $('img#scaffold');
             $scaffold.attr('src', 'assets/images/ScaffoldStrike' + strikes + '.png');
-            
-            var winsCountP = $('#winsCount');
-            winsCountP[0].innerHTML = '';
         }
     }; 
 })(rand_generator, mediaLibrary);
@@ -153,4 +136,11 @@ $('body').keypress(function (event) {
 
 $("#resetBtn").click(function() {
     hangmanGame.resetGame();
+    hangmanGame.resetWinsCount();
 });
+
+$('#nextBtn').click(function () {
+    hangmanGame.initGame();    
+});
+
+hangmanGame.initGame();
