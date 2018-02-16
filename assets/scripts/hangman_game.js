@@ -55,7 +55,6 @@ var hangmanGame = (function (rand_generator, mediaLibrary, mediaPlayer) {
                 $scaffold.attr('src', 'assets/images/ScaffoldStrike' + strikes + '.png');
         
                 guessedLetters.push(uppercaseChar);
-                console.log(guessedLetters.toString());
                 $('#guessedLetters').text(guessedLetters.toString());         
             }            
 
@@ -63,6 +62,7 @@ var hangmanGame = (function (rand_generator, mediaLibrary, mediaPlayer) {
             if (strikes >= guessThreshold) {
                 alert('You LOSE!');
                 this.initGame();
+
             } else if (allLettersRevealed()) {
                 // user has beaten the puzzle
                 ++winsCount;
@@ -72,6 +72,7 @@ var hangmanGame = (function (rand_generator, mediaLibrary, mediaPlayer) {
                 wins[0].innerHTML = winsCount;
                 
                 mediaPlayer.playSong(target.path);
+                $('album-cover').attr('src', target.imgPath);
             }
         },
 
@@ -83,7 +84,9 @@ var hangmanGame = (function (rand_generator, mediaLibrary, mediaPlayer) {
             var fileNdx = rand_generator.generate(NUMBER_OF_FILES);
 
             // use random number to pick a file
+            mediaPlayer.stopSong();
             target = mediaLibrary.retrieveFilePath(fileNdx);
+            mediaPlayer.init(target.path);
 
             strikes = 0;
 
@@ -120,14 +123,19 @@ var hangmanGame = (function (rand_generator, mediaLibrary, mediaPlayer) {
             winsCount = 0;
             var winsCountP = $('#winsCount');
             winsCountP[0].innerHTML = winsCount;
+            this.resetGuessedLetters();
         },
 
         resetGame: function () {
-            strikes = 0;
+            strikes = 0;         
+            this.resetGuessedLetters();
             this.initGame();
-
             var $scaffold = $('img#scaffold');
             $scaffold.attr('src', 'assets/images/ScaffoldStrike' + strikes + '.png');
+        },
+
+        resetGuessedLetters: function () {
+            guessedLetters = [];
         }
     }; 
 })(rand_generator, mediaLibrary, mediaPlayer);
@@ -142,6 +150,7 @@ $("#resetBtn").click(function() {
 });
 
 $('#nextBtn').click(function () {
+    hangmanGame.resetGame();
     hangmanGame.initGame();    
 });
 

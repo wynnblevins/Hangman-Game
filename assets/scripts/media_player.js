@@ -1,10 +1,25 @@
 var mediaPlayer = (function () {
     'use strict';
 
+    var audio = null;
+
     return {
-        playSong: function (filePath) {
-            var audio = new Audio(filePath);
-            audio.play();
+        init: function (filePath) {
+            audio = new Audio(filePath);
+            audio.pause();
+            audio.currentTime = 0;
+        },
+
+        playSong: function () {
+            if (audio) {
+                audio.play();
+            }
+        },
+
+        stopSong: function () {
+            if (audio) {
+                audio.pause();
+            }
         }
     };
 })();

@@ -11,33 +11,37 @@
     <link rel="stylesheet" href="assets/css/style.css"> 
 </head>
 <body class="container-fluid">
-    <div class="col-md-6">
-        <div class="interfaceBox">
+    <div class="row">
+        <div class="col-md-6">
             <div class="interfaceBox">
-                <p>Wins:</p>
-                <p id="winsCount">0</p>
-            </div>
-            <div class="interfaceBox">
-                <div id="currentPuzzleBox">
-                    <!-- puzzle gets builts here -->
+                <div class="interfaceBox">
+                    <p>Wins:</p>
+                    <p id="winsCount">0</p>
                 </div>
+                <div class="interfaceBox">
+                    <div id="currentPuzzleBox">
+                        <!-- puzzle gets builts here -->
+                    </div>
+                </div>
+                <div id="guessedCharsBox" class="interfaceBox">
+                    <p id="guessedLetters"></p>
+                </div>
+                <button type="button" id="resetBtn" 
+                    class="btn btn-defalt">Reset</button>
+                <button type="button" id="nextBtn" 
+                    class="btn btn-defalt">Next Puzzle</button>    
             </div>
-            <div id="guessedCharsBox" class="interfaceBox">
-                <p id="guessedLetters"></p>
-            </div>
-            <button type="button" id="resetBtn" 
-                class="btn btn-defalt">Reset</button>
-            <button type="button" id="nextBtn" 
-                class="btn btn-defalt">Next Puzzle</button>    
+        </div>
+        <div class="col-md-6">
+            <img id="scaffold" src="assets/images/ScaffoldStrike0.png" alt="Scaffold">
         </div>
     </div>
-    <div class="col-md-6">
-        <img id="scaffold" src="assets/images/ScaffoldStrike0.png" alt="Scaffold">
+    <div class="row">
+        <div class="col-md-12">
+            <img id="album-cover" class="img-responsive">
+        </div>
     </div>
-    <div class="col-md-12">
-        
-    </div>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="assets/scripts/random_number_generator.js"></script>
