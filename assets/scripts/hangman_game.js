@@ -2,15 +2,17 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
     'use strict';
     
     var target;
-    var guessThreshold = 6; // number of incorrect guesses allowed
+    var guessThreshold = 7; // number of incorrect guesses allowed
+    var guessedLetters = [];
     var remainingGuesses = guessThreshold;
     var guesses = 0;
-    
+    var winsCount = 0;
+    var strikes = 0;
+
     function allLettersRevealed() {
         var spans = $('div#currentPuzzleBox > span');
-
-        for (var span in spans) {
-            if (span.innerHTML === '_') {
+        for (var i = 0; i < spans.length; i++) {
+            if (spans[i].innerHTML === '_') {
                 return false;
             }
         }
@@ -29,7 +31,7 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
 
         return ndxs;
     }
-)
+
     return {
         onKeyPress: function (event) {
             var char = String.fromCharCode(event.which); 
@@ -42,7 +44,6 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
                 // loop through all indexes in list of matching indexs
                 for (var i = 0; i < ndxs.length; i++) {
                     // set value of span at index in target.targetString to uppercaseChar
-                    // NOTE TO SELF: THIS IS THE LINE NOT WORKING AS EXPECTED
                     var spans = $('div#currentPuzzleBox > span');
                     
                     for (var j = 0; j < target.targetString.length; j++) {
@@ -51,22 +52,39 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
                         }
                     }
                 }    
-            } else {
-                ++strikes;
+            } else {  // user guessed an incorrect letter
+                strikes = strikes + 1;
                 var $scaffold = $('img#scaffold');
                 $scaffold.attr('src', 'assets/images/ScaffoldStrike' + strikes + '.png');
+        
+                if (strikes === 0) {
+                    $('#guessedLetters').text(char);
+                }
+                else {
+                    $('#guessedLetters').text(', ' + char);
+                }         
             }            
 
-            if (strikes === guessThreshold) {
-                // if user has run out of guesses
-                
-                // SHOW LOSER SCREEN
+            // QUESTION: HOW DO I TIME THIS TO RUN AFTER THE LAST IMAGE HAS LOADED?
+            // check if game is lost/won
+            if (strikes >= guessThreshold) {
+                // user has run out of guesses
+
+                // TODO: SHOW LOSER MESSAGE AFTER THE LAST IMAGE HAS LOADED
+                alert('you suck!');
+
+                this.resetGame();
             } else if (allLettersRevealed()) {
-                // or beaten the puzzle
+                // user has beaten the puzzle
+                ++winsCount;
 
-                // ADD ONE TO WINS
-
-                // SHOW WINNER SCREEN        
+                alert('u win!');
+                
+                // TODO: Update wins count on interface
+                var wins = $('#winsCount');
+                wins[0].innerHTML = winsCount;
+                
+                this.resetGame();
             }
         },
 
@@ -113,11 +131,26 @@ var hangmanGame = (function (rand_generator, mediaLibrary) {
             else {
                 return false;
             }
+        },
+
+        resetGame: function () {
+            var strikes = 0;
+            $('#currentPuzzleBox').empty();
+            this.initGame();
+
+            var $scaffold = $('img#scaffold');
+            $scaffold.attr('src', 'assets/images/ScaffoldStrike' + strikes + '.png');
+            
+            var winsCountP = $('#winsCount');
+            winsCountP[0].innerHTML = '';
         }
     }; 
 })(rand_generator, mediaLibrary);
 
-var strikes = 0;
 $('body').keypress(function (event) {
     hangmanGame.onKeyPress(event); 
+});
+
+$("#resetBtn").click(function() {
+    hangmanGame.resetGame();
 });
