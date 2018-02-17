@@ -6,6 +6,7 @@ var hangmanGame = (function (rand_generator, mediaLibrary, mediaPlayer) {
     var guessedLetters = [];
     var guesses = 0;
     var winsCount = 0;
+    var lossCount = 0;
     var strikes = 0;
 
     function allLettersRevealed() {
@@ -53,16 +54,20 @@ var hangmanGame = (function (rand_generator, mediaLibrary, mediaPlayer) {
                 strikes = strikes + 1;
                 var $scaffold = $('img#scaffold');
                 $scaffold.attr('src', 'assets/images/ScaffoldStrike' + strikes + '.png');
-        
+                
                 guessedLetters.push(uppercaseChar);
                 $('#guessedLetters').text(guessedLetters.toString());         
             }            
 
             // check if game is lost/won
             if (strikes >= guessThreshold) {
+                ++lossCount;
+                
+                var losses = $('#lossCount');
+                losses[0].innerHTML = lossCount;
+                
                 alert('You LOSE!');
                 this.initGame();
-
             } else if (allLettersRevealed()) {
                 // user has beaten the puzzle
                 ++winsCount;
@@ -89,7 +94,8 @@ var hangmanGame = (function (rand_generator, mediaLibrary, mediaPlayer) {
             mediaPlayer.init(target.path);
 
             strikes = 0;
-
+            guessedLetters = [];
+            
             // make sure the board is clear
             $('#currentPuzzleBox').empty();
             $('#guessedLetters').empty();
@@ -119,10 +125,16 @@ var hangmanGame = (function (rand_generator, mediaLibrary, mediaPlayer) {
             }
         },
 
-        resetWinsCount: function () {
+        resetCounts: function () {
             winsCount = 0;
+            lossCount = 0;
+            
             var winsCountP = $('#winsCount');
             winsCountP[0].innerHTML = winsCount;
+            
+            var lossCountP = $('#lossCount');
+            lossCountP[0].innerHTML = lossCount;
+            
             this.resetGuessedLetters();
         },
 
@@ -155,7 +167,7 @@ $('body').keypress(function (event) {
 $("#resetBtn").click(function() {
     hangmanGame.resetGame();
     hangmanGame.resetAlbumCover();
-    hangmanGame.resetWinsCount();
+    hangmanGame.resetCounts();
 });
 
 $('#nextBtn').click(function () {
